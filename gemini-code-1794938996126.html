@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Schutz vor Suchmaschinen-Indexierung (Demo-Version) -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Design-Entwurf · MD Elektrotechnik – Mustafa Demir Elektromeister in Köln</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .font-brand { font-family: 'Montserrat', sans-serif; }
+
+        .page-view {
+            animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Warmes Edison-Glühfaden-Leuchten */
+        .edison-glow {
+            box-shadow: 0 0 45px 14px rgba(245, 158, 11, 0.45);
+        }
+        .led-strip-glow {
+            box-shadow: 0 6px 24px 2px rgba(251, 191, 36, 0.55);
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-800 antialiased selection:bg-amber-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- 1. Gut sichtbarer Demo-Hinweis-Balken ganz oben -->
+    <div class="bg-amber-400 text-zinc-950 text-xs md:text-sm font-bold py-2.5 px-4 text-center border-b border-amber-500 shadow-xs z-50">
+        🎨 UNVERBINDLICHER DESIGN-ENTWURF · Demoseite erstellt von Local Growth Media (Keine aktive Unternehmenswebsite)
+    </div>
+
+    <!-- 2. Meisterbetrieb- & 24h-Notdienst-Leiste -->
+    <div class="bg-zinc-900 text-zinc-200 text-xs font-medium py-2 px-4 text-center">
+        ⚡ Meisterbetrieb Mustafa Demir · Ehrenfeldgürtel 149, 50823 Köln · <span class="text-amber-400 font-bold">24H NOTDIENST: 0177 - 710 86 22</span>
+    </div>
+
+    <!-- 3. Hauptnavigation im Stil der Original-Marke (Weiß, Anthrazit & warmes Bernstein-Gold) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200/90 shadow-2xs">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+            <!-- Marken-Logo (inspiriert vom Original-Blitz-Signet) -->
+            <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3.5 text-left group cursor-pointer">
+                <div class="w-11 h-11 rounded-full border-2 border-amber-500 bg-amber-50/60 group-hover:bg-amber-500 transition flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6 text-amber-500 group-hover:text-white transition" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 2L4.5 13.5h6.2L9.5 22 19.5 10.5h-6.2L13 2z"/>
+                    </svg>
+                </div>
+                <div class="font-brand uppercase tracking-wider">
+                    <span class="text-sm md:text-base font-semibold text-zinc-800 block leading-tight">
+                        MUSTAFA DEMIR
+                    </span>
+                    <span class="text-xs md:text-sm font-light text-zinc-500 block leading-tight tracking-[0.14em]">
+                        ELEKTROTECHNIK
+                    </span>
+                </div>
+            </button>
+
+            <!-- Desktop-Unterseiten-Navigation -->
+            <nav class="hidden lg:flex items-center gap-1 bg-zinc-100 p-1 rounded-xl border border-zinc-200/80">
+                <button type="button" onclick="navigateTo('home')" data-nav="home" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition bg-white text-zinc-900 shadow-2xs cursor-pointer">
+                    Startseite &amp; Licht-Studio
+                </button>
+                <button type="button" onclick="navigateTo('leistungen')" data-nav="leistungen" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 transition cursor-pointer">
+                    Leistungen &amp; Notdienst
+                </button>
+                <button type="button" onclick="navigateTo('rechner')" data-nav="rechner" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 transition cursor-pointer">
+                    30-Sek.-Preisrechner
+                </button>
+                <button type="button" onclick="navigateTo('kontakt')" data-nav="kontakt" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 transition cursor-pointer">
+                    Meisterbetrieb &amp; Kontakt
+                </button>
+            </nav>
+
+            <!-- Primärer CTA -->
+            <button type="button" onclick="navigateTo('rechner')" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold text-xs md:text-sm px-4 py-2.5 rounded-xl transition shadow-xs cursor-pointer">
+                Projekt kalkulieren
+            </button>
+        </div>
+
+        <!-- Mobile Unterseiten-Leiste -->
+        <div class="lg:hidden border-t border-zinc-200 bg-zinc-50 px-2 py-1.5 flex justify-around text-xs font-semibold overflow-x-auto">
+            <button type="button" onclick="navigateTo('home')" data-nav-mob="home" class="mob-nav-btn px-3 py-1.5 rounded-lg text-amber-600 bg-white shadow-2xs">Start</button>
+            <button type="button" onclick="navigateTo('leistungen')" data-nav-mob="leistungen" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Leistungen</button>
+            <button type="button" onclick="navigateTo('rechner')" data-nav-mob="rechner" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Preisrechner</button>
+            <button type="button" onclick="navigateTo('kontakt')" data-nav-mob="kontakt" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Kontakt</button>
+        </div>
+    </header>
+
+    <!-- HAUPTINHALT (Multi-Page Container) -->
+    <main class="flex-1">
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 1: STARTSEITE & INTERAKTIVES LICHT-STUDIO      -->
+        <!-- ========================================================= -->
+        <div id="view-home" class="page-view">
+            <!-- Hero Section im Look & Feel der Original-Startseite -->
+            <section class="pt-10 pb-16 md:pt-14 md:pb-20 px-4 bg-gradient-to-b from-amber-50/50 via-white to-white border-b border-zinc-200">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Linke Spalte -->
+                    <div class="lg:col-span-6 text-center lg:text-left">
+                        <div class="font-brand text-xs font-bold uppercase tracking-[0.14em] text-amber-600 mb-3">
+                            Wir bieten ein breites Spektrum für Privatkunden und Unternehmen
+                        </div>
+
+                        <div class="inline-flex items-center gap-2 bg-zinc-50 border border-zinc-200 rounded-full px-3.5 py-1 text-xs text-zinc-700 font-semibold mb-5">
+                            <span class="text-amber-500">★★★★★</span>
+                            <span>5,0 Google-Bewertung (84 Rezensionen) · Meisterbetrieb in Köln</span>
+                        </div>
+
+                        <h1 class="font-brand text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.15] mb-5">
+                            Mustafa Demir – Ihr <span class="text-amber-500">Elektromeister</span> in Köln-Ehrenfeld
+                        </h1>
+
+                        <p class="text-zinc-600 text-base md:text-lg mb-7 leading-relaxed">
+                            Von der sicheren Elektroinstallation und modernen Beleuchtungstechnik über Datennetze und Sprechanlagen bis zum schnellen <strong>24h-Elektronotdienst</strong>: Wir sorgen dafür, dass Ihre Technik zuverlässig und normgerecht läuft.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                            <button type="button" onclick="navigateTo('rechner')" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold px-7 py-4 rounded-xl text-sm md:text-base transition shadow-md cursor-pointer">
+                                In 30 Sek. Preis berechnen →
+                            </button>
+                            <a href="tel:01777108622" class="bg-zinc-900 hover:bg-zinc-800 text-white font-bold px-6 py-4 rounded-xl text-sm md:text-base transition text-center">
+                                ⚡ 24h Notdienst: 0177 710 86 22
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rechte Spalte: Kreatives Interaktives Licht- & Schaltkreis-Studio -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white p-4 rounded-3xl shadow-xl border border-zinc-200">
+                            <!-- Dunkler, stimmungsvoller Raum (greift die warme Edison-Glühbirne der Original-Website auf) -->
+                            <div id="studioRoom" class="relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 transition-all duration-500 p-5 flex flex-col justify-between">
+                                
+                                <!-- Status-Zeile oben -->
+                                <div class="relative z-30 flex items-center justify-between gap-2">
+                                    <span class="bg-white/10 backdrop-blur-xs text-zinc-200 text-[10px] font-brand font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/15">
+                                        Interaktives Licht- &amp; Schaltkreis-Studio
+                                    </span>
+                                    <span id="circuitStatusBadge" class="bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                        ● Alle Kreise aktiv (230V)
+                                    </span>
+                                </div>
+
+                                <!-- LED-Deckenlichtleiste -->
+                                <div id="visLedStrip" class="absolute top-0 inset-x-12 h-1.5 bg-amber-300 rounded-b-full led-strip-glow transition-opacity duration-300 opacity-100"></div>
+
+                                <!-- Zentrale Edison-Glühbirne (Hommage an das Original-Hero-Motiv) -->
+                                <div class="relative z-20 mx-auto my-auto flex flex-col items-center">
+                                    <!-- Kabel -->
+                                    <div class="w-0.5 h-10 bg-zinc-600 -mt-8"></div>
+                                    <!-- Fassung -->
+                                    <div class="w-6 h-5 bg-amber-700 rounded-t-sm border-b border-zinc-900"></div>
+                                    <!-- Glaskolben -->
+                                    <div id="edisonBulb" class="w-16 h-20 rounded-full bg-amber-400/25 border-2 border-amber-400/70 edison-glow flex items-center justify-center transition-all duration-300">
+                                        <!-- Glühfaden-SVG -->
+                                        <svg id="edisonFilament" class="w-8 h-10 text-amber-300 transition-opacity duration-300" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M9 2v8l-3 6 3 4 3-4 3 4 3-4-3-6V2"/>
+                                            <circle cx="12" cy="18" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Untere Smart-Home- & Technik-Leiste im Raum -->
+                                <div class="relative z-30 grid grid-cols-3 gap-2 text-center">
+                                    <div id="cardIntercom" class="bg-white/10 border border-amber-400/40 rounded-xl p-2 transition">
+                                        <div class="text-xs font-bold text-amber-300">📹 Video-Türstation</div>
+                                        <div class="text-[10px] text-zinc-300">Bereit · HD-Bild</div>
+                                    </div>
+                                    <div id="cardNetwork" class="bg-white/10 border border-amber-400/40 rounded-xl p-2 transition">
+                                        <div class="text-xs font-bold text-amber-300">🌐 Datennetz / LAN</div>
+                                        <div class="text-[10px] text-zinc-300">Cat.7 Gigabit aktiv</div>
+                                    </div>
+                                    <div id="cardHeat" class="bg-white/10 border border-amber-400/40 rounded-xl p-2 transition">
+                                        <div class="text-xs font-bold text-amber-300">🔥 E-Heizung</div>
+                                        <div class="text-[10px] text-zinc-300">21,5 °C geregelt</div>
+                                    </div>
+                                </div>
+
+                                <!-- Notdienst-Störungs-Overlay (erscheint beim Kurzschluss-Test) -->
+                                <div id="blackoutOverlay" class="hidden absolute inset-0 bg-zinc-950/90 backdrop-blur-xs z-40 flex flex-col items-center justify-center p-5 text-center">
+                                    <div class="w-12 h-12 rounded-full bg-red-500/20 border border-red-500 text-red-400 flex items-center justify-center text-xl font-bold mb-2">
+                                        ⚡
+                                    </div>
+                                    <div class="font-brand text-sm font-bold uppercase text-white mb-1">
+                                        Sicherung B16 ausgelöst – Stromausfall!
+                                    </div>
+                                    <p class="text-xs text-zinc-300 max-w-xs mb-4">
+                                        Im Ernstfall ist unser 24h-Notdienst in Köln rund um die Uhr für Sie im Einsatz.
+                                    </p>
+                                    <div class="flex flex-wrap gap-2 justify-center">
+                                        <button type="button" onclick="resetCircuitBreaker()" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold text-xs px-4 py-2 rounded-lg transition cursor-pointer">
+                                            ✓ Sicherung wieder einschalten
+                                        </button>
+                                        <a href="tel:01777108622" class="bg-white text-zinc-900 font-bold text-xs px-4 py-2 rounded-lg">
+                                            📞 0177 - 710 86 22
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sicherungskasten-Steuerung unter dem Raum -->
+                            <div class="pt-4 px-1 space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-zinc-700">Schaltkreise live testen:</span>
+                                    <button type="button" onclick="triggerShortCircuit()" class="text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 px-2.5 py-1 rounded-lg transition cursor-pointer">
+                                        ⚡ Störung / Notdienst simulieren
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                    <button type="button" onclick="toggleCircuit('edison', this)" data-on="true" class="circuit-btn border-2 border-amber-500 bg-amber-50/70 rounded-xl p-2 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-zinc-900">💡 Edison-Licht</span>
+                                        <span class="block text-[10px] font-bold text-amber-600 mt-0.5">EIN</span>
+                                    </button>
+                                    <button type="button" onclick="toggleCircuit('led', this)" data-on="true" class="circuit-btn border-2 border-amber-500 bg-amber-50/70 rounded-xl p-2 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-zinc-900">✨ LED-Leiste</span>
+                                        <span class="block text-[10px] font-bold text-amber-600 mt-0.5">EIN</span>
+                                    </button>
+                                    <button type="button" onclick="toggleCircuit('intercom', this)" data-on="true" class="circuit-btn border-2 border-amber-500 bg-amber-50/70 rounded-xl p-2 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-zinc-900">📹 Sprechanlage</span>
+                                        <span class="block text-[10px] font-bold text-amber-600 mt-0.5">EIN</span>
+                                    </button>
+                                    <button type="button" onclick="toggleCircuit('heat', this)" data-on="true" class="circuit-btn border-2 border-amber-500 bg-amber-50/70 rounded-xl p-2 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-zinc-900">🔥 E-Heizung</span>
+                                        <span class="block text-[10px] font-bold text-amber-600 mt-0.5">EIN</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Die 3 klassischen Säulen von Mustafa Demir (wie im Original-Screenshot, modern aufbereitet) -->
+            <section class="py-16 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="font-brand text-xl md:text-2xl font-semibold uppercase tracking-[0.12em] text-amber-500">
+                            Mustafa Demir Elektromeister in Köln
+                        </h2>
+                        <p class="text-zinc-500 text-sm mt-2">Fachgerechte Ausführung für Wohngebäude, Gewerbe und Neubau</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                        <!-- Säule 1: Reparatur & Wartung -->
+                        <div class="bg-zinc-50/80 border border-zinc-200 rounded-2xl p-7 text-center flex flex-col justify-between">
+                            <div>
+                                <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center">
+                                    <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-brand text-sm font-bold uppercase tracking-wider text-zinc-900 mb-3">
+                                    Reparatur &amp; Wartung
+                                </h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-5">
+                                    Sollte Ihre Hauselektronik Probleme machen, kontaktieren Sie uns umgehend. Reparaturen in Eigenregie bergen hohe Gefahren – lassen Sie hier lieber den geprüften Elektromeister ran.
+                                </p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Reparatur, Fehlersuche & E-Check', 95)" class="text-xs font-bold text-amber-600 hover:underline cursor-pointer">
+                                Reparatur / E-Check kalkulieren →
+                            </button>
+                        </div>
+
+                        <!-- Säule 2: Elektroinstallation -->
+                        <div class="bg-zinc-50/80 border border-zinc-200 rounded-2xl p-7 text-center flex flex-col justify-between">
+                            <div>
+                                <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center">
+                                    <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                        <path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-brand text-sm font-bold uppercase tracking-wider text-zinc-900 mb-3">
+                                    Elektroinstallation
+                                </h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-5">
+                                    Unser Aufgabengebiet umfasst alle Arten der Elektroinstallation: Beleuchtungstechnik, Datennetze, Sprech- und Videoanlagen, Telefonanlagen, E-Heizung sowie kompletter Neubauservice.
+                                </p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Elektroinstallation & Beleuchtungstechnik', 180)" class="text-xs font-bold text-amber-600 hover:underline cursor-pointer">
+                                Installation kalkulieren →
+                            </button>
+                        </div>
+
+                        <!-- Säule 3: Beratung & Notdienst -->
+                        <div class="bg-zinc-50/80 border border-zinc-200 rounded-2xl p-7 text-center flex flex-col justify-between">
+                            <div>
+                                <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center">
+                                    <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="M4 14a8 8 0 0 1 16 0v2H4v-2z"/>
+                                        <path d="M12 6v4l2-1M6 16v2a6 6 0 0 0 12 0v-2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-brand text-sm font-bold uppercase tracking-wider text-zinc-900 mb-3">
+                                    Beratung &amp; Notdienst
+                                </h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-5">
+                                    Im Notfall stehen wir Ihnen 24 Stunden rund um die Uhr unter unserer Notfallnummer zur Seite. Für geplante Vorhaben erstellen wir Ihnen ein maßgeschneidertes Angebot.
+                                </p>
+                            </div>
+                            <button type="button" onclick="navigateTo('leistungen')" class="text-xs font-bold text-amber-600 hover:underline cursor-pointer">
+                                Alle Leistungen ansehen →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Markante 24H-Notdienst-Leiste (wie auf der Original-Website) -->
+                    <div class="mt-12 py-6 border-y border-zinc-200 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+                        <div class="w-11 h-11 rounded-full border-2 border-amber-500 text-amber-500 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13 2L4.5 13.5h6.2L9.5 22 19.5 10.5h-6.2L13 2z"/>
+                            </svg>
+                        </div>
+                        <a href="tel:01777108622" class="font-brand text-lg md:text-2xl font-medium tracking-wider text-amber-500 hover:text-amber-600 transition">
+                            24H NOTDIENST: 0177 - 710 86 22
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <p class="font-brand text-xs font-bold uppercase tracking-[0.14em] text-amber-500">
+                            Ihr kompetenter Partner aus der Region, wenn es um Elektrik geht
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 2: LEISTUNGEN & 24H-NOTDIENST                  -->
+        <!-- ========================================================= -->
+        <div id="view-leistungen" class="page-view hidden">
+            <section class="py-14 px-4 bg-gradient-to-b from-amber-50/60 to-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto">
+                    <span class="font-brand text-amber-600 text-xs font-bold uppercase tracking-widest">Meisterbetrieb Köln-Ehrenfeld</span>
+                    <h1 class="font-brand text-3xl md:text-5xl font-bold text-zinc-900 mt-1 mb-4">
+                        Leistungen &amp; 24h-Notdienst
+                    </h1>
+                    <p class="text-zinc-600 text-base max-w-2xl leading-relaxed">
+                        Ob Modernisierung im Altbau, kompletter Neubauservice, IT-Verkabelung oder akuter Stromausfall: Wir arbeiten sauber, termintreu und nach aktuellen VDE-Sicherheitsstandards.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Detailliertes Leistungsspektrum (alle Bereiche der Original-Seite abgedeckt) -->
+            <section class="py-14 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-zinc-50 border border-zinc-200 p-6 rounded-2xl">
+                        <div class="text-amber-500 font-brand text-xs font-bold uppercase mb-1">01 · Installation</div>
+                        <h3 class="font-bold text-zinc-900 text-base mb-2">Elektroinstallation &amp; Neubauservice</h3>
+                        <p class="text-xs text-zinc-600 leading-relaxed">Komplette Leitungsverlegung, Zählerschränke, Unterverteilungen, Steckdosen- und Schalterprogramme für Altbau-Sanierung und Neubau.</p>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-6 rounded-2xl">
+                        <div class="text-amber-500 font-brand text-xs font-bold uppercase mb-1">02 · Lichtkonzepte</div>
+                        <h3 class="font-bold text-zinc-900 text-base mb-2">Beleuchtungstechnik</h3>
+                        <p class="text-xs text-zinc-600 leading-relaxed">Energieeffiziente LED-Systeme, Einbauspots, indirekte Beleuchtung, Außen- und Sicherheitsbeleuchtung für Privat und Gewerbe.</p>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-6 rounded-2xl">
+                        <div class="text-amber-500 font-brand text-xs font-bold uppercase mb-1">03 · Vernetzung</div>
+                        <h3 class="font-bold text-zinc-900 text-base mb-2">Datennetze, IT- &amp; Telefonanlagen</h3>
+                        <p class="text-xs text-zinc-600 leading-relaxed">Strukturierte Netzwerkverkabelung (Cat.6 / Cat.7), Patchfelder, WLAN-Access-Points und moderne Telefonanlagen für Homeoffice und Büros.</p>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-6 rounded-2xl">
+                        <div class="text-amber-500 font-brand text-xs font-bold uppercase mb-1">04 · Gebäudesicherheit</div>
+                        <h3 class="font-bold text-zinc-900 text-base mb-2">Sprech- &amp; Videoanlagen</h3>
+                        <p class="text-xs text-zinc-600 leading-relaxed">Installation und Modernisierung von Klingel-, Türsprech- und Video-Gegensprechanlagen für Ein- und Mehrfamilienhäuser.</p>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-6 rounded-2xl">
+                        <div class="text-amber-500 font-brand text-xs font-bold uppercase mb-1">05 · Wärmetechnik</div>
+                        <h3 class="font-bold text-zinc-900 text-base mb-2">E-Heizung &amp; Warmwasser</h3>
+                        <p class="text-xs text-zinc-600 leading-relaxed">Fachgerechter Anschluss und Regelung elektrischer Heizsysteme, Fußbodentemperierung und elektronischer Durchlauferhitzer.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 text-white p-6 rounded-2xl">
+                        <div class="text-amber-400 font-brand text-xs font-bold uppercase mb-1">06 · Rund um die Uhr</div>
+                        <h3 class="font-bold text-white text-base mb-2">Reparatur, Wartung &amp; 24h-Notruf</h3>
+                        <p class="text-xs text-zinc-300 leading-relaxed mb-3">Schnelle Störungsbehebung bei Kurzschluss, defektem FI-Schutzschalter oder Stromausfall in Köln.</p>
+                        <a href="tel:01777108622" class="text-xs font-bold text-amber-400 hover:underline">Notruf: 0177 - 710 86 22 →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4-Schritte-Ablauf -->
+            <section class="py-14 px-4 bg-zinc-50">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="font-brand text-2xl md:text-3xl font-bold text-zinc-900 text-center mb-10">So läuft Ihr Auftrag ab</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-zinc-950 font-bold text-xs flex items-center justify-center mb-3">1</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Anfrage / Preisrechner</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Sie wählen Ihr Anliegen im Online-Rechner aus oder rufen uns direkt in Ehrenfeld an.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-zinc-950 font-bold text-xs flex items-center justify-center mb-3">2</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Persönliche Beratung</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Wir prüfen die Gegebenheiten vor Ort und besprechen die beste technische Lösung.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-zinc-950 font-bold text-xs flex items-center justify-center mb-3">3</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Transparentes Angebot</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Sie erhalten ein klares, faires Angebot ohne versteckte Kosten.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-zinc-950 font-bold text-xs flex items-center justify-center mb-3">4</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Meisterhafte Ausführung</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Saubere Installation inklusive fachgerechter Sicherheitsprüfung und Einweisung.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 3: 30-SEKUNDEN-PREISRECHNER                    -->
+        <!-- ========================================================= -->
+        <div id="view-rechner" class="page-view hidden">
+            <section class="py-14 px-4 bg-zinc-50">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-center mb-8">
+                        <span class="font-brand text-amber-600 text-xs font-bold uppercase tracking-wider">Sofort-Preisindikation</span>
+                        <h1 class="font-brand text-3xl md:text-4xl font-bold text-zinc-900 mt-1">Was kostet Ihr Elektro-Vorhaben?</h1>
+                        <p class="text-zinc-600 text-sm mt-2">Wählen Sie Bereich und Umfang für eine unverbindliche Kostenschätzung vom Meisterbetrieb.</p>
+                    </div>
+
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 shadow-lg">
+                        <!-- Progress Bar -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs text-zinc-500 font-medium mb-2">
+                                <span id="stepLabel">Schritt 1 von 3</span>
+                                <span id="stepPercent">33%</span>
+                            </div>
+                            <div class="w-full bg-zinc-100 h-2 rounded-full overflow-hidden">
+                                <div id="progressBar" class="bg-amber-500 h-full transition-all duration-300" style="width: 33%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Schritt 1: Leistungsbereich -->
+                        <div id="step1" class="step-panel space-y-3">
+                            <h3 class="text-base md:text-lg font-bold text-zinc-900 mb-3">1. Wobei können wir Ihnen helfen?</h3>
+                            
+                            <button type="button" onclick="selectService('Elektroinstallation & Beleuchtungstechnik', 180)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Elektroinstallation &amp; Beleuchtung</div>
+                                    <div class="text-xs text-zinc-500">Steckdosen, Leitungen, LED-Systeme &amp; Sicherungskasten</div>
+                                </div>
+                                <span class="text-amber-600 font-bold text-xs md:text-sm shrink-0 ml-2">ab 180 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('Reparatur, Fehlersuche & E-Check', 95)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Reparatur, Wartung &amp; Störungsbehebung</div>
+                                    <div class="text-xs text-zinc-500">Fehlersuche, Austausch defekter Komponenten &amp; Prüfung</div>
+                                </div>
+                                <span class="text-amber-600 font-bold text-xs md:text-sm shrink-0 ml-2">ab 95 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('Datennetze, Sprech- & Videoanlagen', 240)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Datennetze, IT-, Telefon- &amp; Videoanlagen</div>
+                                    <div class="text-xs text-zinc-500">Netzwerkverkabelung &amp; moderne Türkommunikation</div>
+                                </div>
+                                <span class="text-amber-600 font-bold text-xs md:text-sm shrink-0 ml-2">ab 240 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('E-Heizung & Neubauservice', 450)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">E-Heizung &amp; kompletter Neubauservice</div>
+                                    <div class="text-xs text-zinc-500">Planung &amp; Ausführung für Wohn- und Gewerbeobjekte</div>
+                                </div>
+                                <span class="text-amber-600 font-bold text-xs md:text-sm shrink-0 ml-2">ab 450 €</span>
+                            </button>
+                        </div>
+
+                        <!-- Schritt 2: Umfang & Dringlichkeit -->
+                        <div id="step2" class="step-panel hidden space-y-5">
+                            <div>
+                                <h3 class="text-base md:text-lg font-bold text-zinc-900 mb-3">2. Wie groß ist der Umfang des Projekts?</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <button type="button" onclick="selectSize('Einzelauftrag / 1 Raum', 1)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Kompakt</div>
+                                        <div class="text-xs text-zinc-500 mt-1">1 Raum / Einzelauftrag</div>
+                                    </button>
+                                    <button type="button" onclick="selectSize('Wohnung / Mehrere Räume', 2.2)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Wohnung / Büro</div>
+                                        <div class="text-xs text-zinc-500 mt-1">Mehrere Räume</div>
+                                    </button>
+                                    <button type="button" onclick="selectSize('Komplettsanierung / Neubau', 4.5)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-amber-500 hover:bg-amber-50/40 transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Großprojekt</div>
+                                        <div class="text-xs text-zinc-500 mt-1">Haus / Gewerbeobjekt</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-4">
+                                <label class="flex items-center gap-2.5 text-xs text-zinc-800 font-semibold cursor-pointer">
+                                    <input type="checkbox" id="optUrgent" class="accent-amber-500 w-4 h-4">
+                                    <span>⚡ Dringender Einsatz / Kurzfristiger Wunschtermin in Köln</span>
+                                </label>
+                            </div>
+
+                            <button type="button" onclick="goStep(1)" class="text-xs text-zinc-500 hover:text-zinc-900 font-medium pt-1 cursor-pointer">← Zurück</button>
+                        </div>
+
+                        <!-- Schritt 3: Ergebnis & Demo-Formular -->
+                        <div id="step3" class="step-panel hidden space-y-5">
+                            <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-center">
+                                <span class="text-xs text-amber-800 uppercase tracking-wider font-bold">Unverbindliche Preis-Schätzung</span>
+                                <div id="priceRange" class="text-2xl md:text-3xl font-extrabold text-zinc-900 my-2">395 € – 515 €</div>
+                                <p id="summaryText" class="text-xs text-zinc-600"></p>
+                            </div>
+
+                            <form id="leadForm" class="space-y-3">
+                                <input type="hidden" name="access_key" value="DEIN_WEB3FORMS_KEY">
+                                <input type="hidden" name="subject" value="Neue Elektro-Anfrage - MD Elektrotechnik">
+                                <input type="hidden" id="hiddenDetails" name="kalkulation">
+
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Ihr Name / Firma *</label>
+                                    <input type="text" name="name" required placeholder="Max Mustermann" class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-amber-500 focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Telefonnummer für Rückruf *</label>
+                                    <input type="tel" name="phone" required placeholder="0221 / 0177..." class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-amber-500 focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Kölner Stadtteil &amp; kurze Beschreibung</label>
+                                    <input type="text" name="location" placeholder="z.B. Köln-Ehrenfeld, Zählerschrank & LED-Spots" class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-amber-500 focus:bg-white">
+                                </div>
+
+                                <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-3.5 rounded-lg text-sm transition shadow-sm cursor-pointer">
+                                    Unverbindliches Angebot anfragen
+                                </button>
+                                <p class="text-[11px] text-zinc-400 text-center">
+                                    Hinweis: Funktions-Vorschau im Rahmen des Design-Entwurfs von Local Growth Media.
+                                </p>
+                            </form>
+
+                            <div id="successBox" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-900 p-4 rounded-xl text-sm text-center">
+                                ✅ <strong>Vorschau-Bestätigung:</strong> So sieht die Sofort-Bestätigung für Ihre Kunden nach dem Absenden aus.
+                            </div>
+
+                            <button type="button" onclick="goStep(1)" class="text-xs text-zinc-500 hover:text-zinc-900 block mx-auto font-medium cursor-pointer">Rechner neu starten</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 4: MEISTERBETRIEB, KONTAKT & RECHTLICHES       -->
+        <!-- ========================================================= -->
+        <div id="view-kontakt" class="page-view hidden">
+            <section class="py-14 px-4 bg-gradient-to-b from-amber-50/60 to-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto">
+                    <span class="font-brand text-amber-600 text-xs font-bold uppercase tracking-wider">Köln-Ehrenfeld</span>
+                    <h1 class="font-brand text-3xl md:text-5xl font-bold text-zinc-900 mt-1 mb-4">
+                        Meisterbetrieb &amp; Direktkontakt
+                    </h1>
+                    <p class="text-zinc-600 text-base max-w-2xl leading-relaxed">
+                        Wir sind Ihr regionaler Ansprechpartner für sichere Elektrotechnik in Köln-Ehrenfeld und im gesamten Kölner Stadtgebiet – persönlich erreichbar im Büro und im 24h-Notdienst.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-5">
+                        <div>
+                            <h2 class="font-brand text-xl font-bold text-zinc-900">MD Elektrotechnik</h2>
+                            <p class="text-xs text-zinc-500 mt-1">Meisterbetrieb · Inhaber Mustafa Demir</p>
+                        </div>
+                        <ul class="space-y-3 text-sm text-zinc-700">
+                            <li>📍 <strong>Adresse:</strong> Ehrenfeldgürtel 149, 50823 Köln</li>
+                            <li>📞 <strong>Büro / Festnetz:</strong> <a href="tel:022199878390" class="text-amber-600 font-bold hover:underline">0221 998 783 90</a></li>
+                            <li>⚡ <strong>24H Notruf Mobil:</strong> <a href="tel:01777108622" class="text-amber-600 font-bold hover:underline">0177 710 86 22</a></li>
+                            <li>✉️ <strong>E-Mail:</strong> <a href="mailto:info@md-elektrotechnik.de" class="text-amber-600 font-bold hover:underline">info@md-elektrotechnik.de</a></li>
+                        </ul>
+                        <a href="tel:022199878390" class="block w-full text-center bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3.5 rounded-xl text-sm transition">
+                            Jetzt anrufen: 0221 998 783 90
+                        </a>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-4">
+                        <div class="inline-block bg-amber-100 text-amber-900 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                            Rechtliches-Struktur (Vorschau für Live-Schaltung)
+                        </div>
+                        <h2 class="font-brand text-xl font-bold text-zinc-900">Impressum &amp; Datenschutz</h2>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            Bei der Live-Schaltung unter <strong>md-elektrotechnik.de</strong> (inklusive SSL-Verschlüsselung `https://`) werden hier Ihre vollständigen Pflichtangaben gemäß § 5 DDG hinterlegt:
+                        </p>
+                        <div class="bg-white border border-zinc-200 rounded-xl p-4 text-xs text-zinc-600 space-y-1">
+                            <div><strong>MD Elektrotechnik – Meisterbetrieb</strong></div>
+                            <div>Inhaber: Mustafa Demir</div>
+                            <div>Ehrenfeldgürtel 149, 50823 Köln</div>
+                            <div>Zuständige Kammer: Handwerkskammer zu Köln</div>
+                            <div>Gesetzliche Berufsbezeichnung: Elektromeister (verliehen in der Bundesrepublik Deutschland)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer mit klarem Demo-Hinweis -->
+    <footer class="py-12 px-4 bg-zinc-950 text-zinc-300 text-sm border-t border-zinc-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="font-brand">
+                <div class="text-lg font-bold text-white uppercase tracking-wider">MUSTAFA DEMIR ELEKTROTECHNIK</div>
+                <div class="text-xs text-zinc-400 mt-1">Meisterbetrieb · Ehrenfeldgürtel 149 · 50823 Köln-Ehrenfeld</div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 text-xs font-medium">
+                <button type="button" onclick="navigateTo('home')" class="hover:text-white transition cursor-pointer">Startseite</button>
+                <button type="button" onclick="navigateTo('leistungen')" class="hover:text-white transition cursor-pointer">Leistungen</button>
+                <button type="button" onclick="navigateTo('rechner')" class="hover:text-white transition cursor-pointer">Preisrechner</button>
+                <button type="button" onclick="navigateTo('kontakt')" class="hover:text-white transition cursor-pointer">Kontakt &amp; Impressum</button>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-zinc-500">
+            <span>Unverbindlicher Design-Entwurf erstellt von <strong>Local Growth Media</strong> · Köln</span>
+            <span>Demoseite – nicht öffentlich indexiert</span>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. Multi-Page Navigation --- */
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('view-' + pageId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === pageId) {
+                    btn.classList.add('bg-white', 'text-zinc-900', 'shadow-2xs', 'font-semibold');
+                    btn.classList.remove('text-zinc-600', 'font-medium');
+                } else {
+                    btn.classList.remove('bg-white', 'text-zinc-900', 'shadow-2xs', 'font-semibold');
+                    btn.classList.add('text-zinc-600', 'font-medium');
+                }
+            });
+
+            document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+                if (btn.dataset.navMob === pageId) {
+                    btn.classList.add('text-amber-600', 'bg-white', 'shadow-2xs');
+                    btn.classList.remove('text-zinc-600');
+                } else {
+                    btn.classList.remove('text-amber-600', 'bg-white', 'shadow-2xs');
+                    btn.classList.add('text-zinc-600');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* --- 2. Interaktives Licht- & Schaltkreis-Studio --- */
+        function toggleCircuit(circuit, btn) {
+            const isOn = btn.dataset.on === 'true';
+            const statusSpan = btn.querySelector('span:last-child');
+
+            if (isOn) {
+                btn.dataset.on = 'false';
+                btn.classList.remove('border-amber-500', 'bg-amber-50/70');
+                btn.classList.add('border-zinc-200', 'bg-zinc-50', 'opacity-70');
+                statusSpan.innerText = 'AUS';
+                statusSpan.classList.replace('text-amber-600', 'text-zinc-400');
+            } else {
+                btn.dataset.on = 'true';
+                btn.classList.add('border-amber-500', 'bg-amber-50/70');
+                btn.classList.remove('border-zinc-200', 'bg-zinc-50', 'opacity-70');
+                statusSpan.innerText = 'EIN';
+                statusSpan.classList.replace('text-zinc-400', 'text-amber-600');
+            }
+
+            const nowOn = !isOn;
+            if (circuit === 'edison') {
+                const bulb = document.getElementById('edisonBulb');
+                const filament = document.getElementById('edisonFilament');
+                if (nowOn) {
+                    bulb.classList.add('bg-amber-400/25', 'border-amber-400/70', 'edison-glow');
+                    bulb.classList.remove('bg-zinc-800/40', 'border-zinc-700');
+                    filament.classList.remove('opacity-20');
+                } else {
+                    bulb.classList.remove('bg-amber-400/25', 'border-amber-400/70', 'edison-glow');
+                    bulb.classList.add('bg-zinc-800/40', 'border-zinc-700');
+                    filament.classList.add('opacity-20');
+                }
+            } else if (circuit === 'led') {
+                document.getElementById('visLedStrip').style.opacity = nowOn ? '1' : '0.08';
+            } else if (circuit === 'intercom') {
+                document.getElementById('cardIntercom').style.opacity = nowOn ? '1' : '0.3';
+            } else if (circuit === 'heat') {
+                document.getElementById('cardHeat').style.opacity = nowOn ? '1' : '0.3';
+            }
+        }
+
+        function triggerShortCircuit() {
+            document.getElementById('blackoutOverlay').classList.remove('hidden');
+            const badge = document.getElementById('circuitStatusBadge');
+            badge.innerText = '● Störung (FI / B16)';
+            badge.className = 'bg-red-500/20 border border-red-400/40 text-red-300 text-[10px] font-bold px-2.5 py-1 rounded-full';
+        }
+
+        function resetCircuitBreaker() {
+            document.getElementById('blackoutOverlay').classList.add('hidden');
+            const badge = document.getElementById('circuitStatusBadge');
+            badge.innerText = '● Alle Kreise aktiv (230V)';
+            badge.className = 'bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold px-2.5 py-1 rounded-full';
+        }
+
+        /* --- 3. 30-Sekunden-Preisrechner --- */
+        let state = { serviceName: '', basePrice: 0, sizeLabel: '', multiplier: 1 };
+
+        function quickStartCalculator(serviceName, basePrice) {
+            navigateTo('rechner');
+            selectService(serviceName, basePrice);
+        }
+
+        function goStep(step) {
+            document.querySelectorAll('.step-panel').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step' + step).classList.remove('hidden');
+            let pct = step === 1 ? '33%' : (step === 2 ? '66%' : '100%');
+            document.getElementById('stepLabel').innerText = `Schritt ${step} von 3`;
+            document.getElementById('stepPercent').innerText = pct;
+            document.getElementById('progressBar').style.width = pct;
+        }
+
+        function selectService(name, price) {
+            state.serviceName = name;
+            state.basePrice = price;
+            goStep(2);
+        }
+
+        function selectSize(label, multiplier) {
+            state.sizeLabel = label;
+            state.multiplier = multiplier;
+
+            const isUrgent = document.getElementById('optUrgent')?.checked;
+            const urgentAdd = isUrgent ? 45 : 0;
+
+            const totalMin = Math.round(state.basePrice * state.multiplier + urgentAdd);
+            const totalMax = Math.round(totalMin * 1.28);
+
+            document.getElementById('priceRange').innerText = `${totalMin.toLocaleString()} € – ${totalMax.toLocaleString()} €`;
+            const summary = `${state.serviceName} (${state.sizeLabel})${isUrgent ? ' · Kurzfristiger Termin' : ''}`;
+            document.getElementById('summaryText').innerText = summary;
+            document.getElementById('hiddenDetails').value = `${summary} | Schätzung: ${totalMin}€ - ${totalMax}€`;
+
+            goStep(3);
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'Wird gesendet...';
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+            const object = Object.fromEntries(formData);
+
+            try {
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(object)
+                });
+            } catch (error) {}
+
+            this.classList.add('hidden');
+            document.getElementById('successBox').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
